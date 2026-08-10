@@ -1,0 +1,25 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "\ud83d\ude80 Spring Boot \uc11c\ubc84 \uc2e4\ud589",
+      "request": "launch",
+      "mainClass": "com.gdgku.study.backend.BackendApplication",
+      "projectName": "backend"
+    },
+    {
+      "type": "java",
+      "name": "\ud83e\uddea \uc804\uccb4 \ud14c\uc2a4\ud2b8 \uc2e4\ud589",
+      "request": "launch",
+      "mainClass": "com.gdgku.study.backend.BackendApplicationTests",
+      "projectName": "backend"
+    },
+    {
+      "type": "node-terminal",
+      "name": "\ud83d\udee1\ufe0f CycloneDX SBOM \ucd94\ucd9c",
+      "request": "launch",
+      "command": "./gradlew cyclonedxBom"
+    }
+  ]
+}

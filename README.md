@@ -1,70 +1,65 @@
-# Spring Boot 백엔드 스터디 커리큘럼 예시 코드베이스
+# 🚀 Spring Boot 백엔드 스터디 템플릿 프로젝트
 
-이 저장소는 Java Spring Boot 백엔드 스터디(주니어반)의 1주차부터 4주차까지의 진행 과정을 단계별로 담고 있는 예시 프로젝트입니다.
-
----
-
-## 📌 깃 브랜치 체크포인트 (Branch Checkpoints)
-
-각 주차별 학습 결과물은 전용 **Git Branch**로 분리되어 있어, 커리큘럼 진행에 맞춰 언제든지 해당 주차의 완성된 코드로 전환할 수 있습니다.
-
-| 주차 | 브랜치 이름 | 학습 주제 | 커밋 메시지 (Conventional Commits) |
-|---|---|---|---|
-| **1주차** | `week1` | 요청과 응답, REST API 기초 (@PathVariable, @RequestParam, @RequestBody) | `feat(week1): add hello controller and user endpoints...` |
-| **2주차** | `week2` | MVC 3계층 분리 (Controller-Service-Model) & 메모리 CRUD | `refactor(week2): separate 3 layers and implement memo crud...` |
-| **3주차** | `week3` | 도메인형 패키지 구조 재배치 & Spring Data JPA + H2 DB 연동 | `feat(week3): restructure to domain-driven packages and integrate...` |
-| **4주차** | `week4` / `main` | 전역 예외 처리, 공통 응답 포맷 통일, Bean Validation 적용 | `feat(week4): implement global exception handling, unified api...` |
+이 저장소는 Java Spring Boot 백엔드 스터디(주니어반)를 위한 템플릿 코드베이스입니다.
 
 ---
 
-## 🚀 브랜치 이동 가이드 (Git Checkout)
+## 🛠 VS Code 개발 환경 설정 가이드
 
-수강생들은 아래 명령어를 통해 각 주차별 코드 상태로 손쉽게 이동할 수 있습니다:
+독립된 스터디 전용 프로필을 생성하여 쾌적한 개발 환경을 구축하는 방법입니다.
 
+### 1. 스터디 전용 프로필 만들기 (최초 1회)
+1. VS Code 좌측 하단 **⚙️ (설정 아이콘)** → **Profiles** → **Create Profile...** 클릭
+2. 프로필 이름에 `Spring-Study` 입력 후 **[Create]** 클릭
+
+### 2. 필수 확장 프로그램 자동 설치
+* 이 프로젝트 폴더를 열면 우측 하단에 안내 팝업이 뜹니다.
+* **"이 저장소에 대한 권장 확장 프로그램이 있습니다. 모두 설치하시겠습니까?"** → **[Install All]** 클릭
+
+### 3. VS Code 하단 상태 표시줄 (Status Bar) 버튼 활용
+`actboy168.tasks` 확장이 설치되면 하단 상태바의 버튼으로 손쉽게 명령을 실행할 수 있습니다:
+* **`$(play) Boot Run`** (초록색): Spring Boot 서버 실행 (`./gradlew bootRun`)
+* **`$(beaker) Run Tests`** (주황색): 전체 단위 테스트 실행 (`./gradlew test`)
+* **`$(shield) Generate SBOM`** (파란색): CycloneDX SBOM 추출 (`./gradlew cyclonedxBom`)
+
+---
+
+## 📋 개발 환경 및 SBOM 버전 확인 가이드
+
+스터디 진행 전, 본인의 개발 환경 및 라이브러리 버전이 표준 명세와 일치하는지 확인해 보세요.
+
+### 1. 프로젝트 주요 버전 명세
+* **Java / JDK**: Java 17 (JDK 17 LTS)
+* **Spring Boot**: v4.1.0
+* **Build Tool**: Gradle 9.5.1 (Wrapper)
+* **SBOM Standard**: CycloneDX (v1.5 / v1.6 JSON)
+
+### 2. 내 환경 및 라이브러리 버전을 맞춰보는 방법
 ```bash
-# 1주차 최종 코드로 이동
-git checkout week1
+# 1. 내 로컬 Java 및 Gradle 런타임 버전 확인
+java -version
+./gradlew --version
 
-# 2주차 최종 코드로 이동
-git checkout week2
+# 2. CycloneDX SBOM 생성 (의존성 라이브러리 버전 추출)
+./gradlew cyclonedxBom
 
-# 3주차 최종 코드로 이동
-git checkout week3
-
-# 4주차 (최종 완성본)로 이동
-git checkout week4  # 또는 git checkout main
+# 3. 생성된 SBOM에서 프로젝트 의존성 라이브러리 및 버전을 표준과 대조 확인
+# 생성 경로: build/reports/cyclonedx/application.cdx.json
 ```
 
----
-
-## 📂 주차별 주요 변경 내용 요약
-
-### 1주차 (`week1`)
-- `HelloController`: `GET /hello` 기본 응답 테스트
-- `UserController`: `@PathVariable`, `@RequestParam`, `@RequestBody` 세 가지 파라미터 수신 방법 비교 실습
-
-### 2주차 (`week2`)
-- 3계층 (Controller -> Service -> Model) 구조 및 DTO 도입
-- `MemoService` (메모리 `List<Memo>` 기반 메모장 CRUD 구현)
-
-### 3주차 (`week3`)
-- 계층형 패키지 구조에서 도메인형 패키지 구조 (`domain.user`, `domain.memo`)로 전환
-- `Memo` 객체를 `@Entity`로 변환 및 `MemoRepository extends JpaRepository<Memo, Long>` 생성
-- H2 인메모리 데이터베이스 및 H2 콘솔(`/h2-console`) 연동
-
-### 4주차 (`week4` / `main`)
-- `@RestControllerAdvice` 기반 `GlobalExceptionHandler` 작성
-- `ApiResponse<T>` 객체를 통한 전역 응답 형태 표준화 (`success`, `data`, `message`)
-- `@Valid` 및 Bean Validation(`@NotBlank`, `@Size`) 적용으로 요청 유효성 검증
+> 💡 **Tip**: 생성된 `application.cdx.json` 파일을 [SBOM Viewer (sbomviewer.com)](https://sbomviewer.com/) 사이트에 드래그 앤 드롭하면 시각적인 웹 화면으로 라이브러리 명세를 편리하게 조회할 수 있습니다.
 
 ---
 
-## 🛠 실행 방법
+## 🚀 프로젝트 실행 방법
 
 ```bash
-# 프로젝트 빌드 및 실행 (Gradle)
+# 1. 애플리케이션 실행 (Gradle)
 ./gradlew bootRun
+
+# 2. CycloneDX SBOM 추출
+./gradlew cyclonedxBom
 ```
 
-- 서버 주소: `http://localhost:8080`
-- H2 콘솔: `http://localhost:8080/h2-console` (JDBC URL: `jdbc:h2:mem:testdb`)
+* **서버 주소**: `http://localhost:8080`
+* **CycloneDX SBOM 파일 위치**: `build/reports/cyclonedx/application.cdx.json`

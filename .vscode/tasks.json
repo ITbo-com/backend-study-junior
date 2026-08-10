@@ -1,0 +1,44 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "\ud83d\ude80 Spring Boot \uc11c\ubc84 \uc2e4\ud589",
+      "type": "shell",
+      "command": "./gradlew bootRun",
+      "problemMatcher": [],
+      "options": {
+        "statusbar": {
+          "label": "$(play) Boot Run",
+          "tooltip": "Spring Boot \uc11c\ubc84 \uc2e4\ud589 (./gradlew bootRun)",
+          "color": "#4CAF50"
+        }
+      }
+    },
+    {
+      "label": "\ud83e\uddea \uc804\uccb4 \ud14c\uc2a4\ud2b8 \uc2e4\ud589",
+      "type": "shell",
+      "command": "./gradlew test",
+      "problemMatcher": [],
+      "options": {
+        "statusbar": {
+          "label": "$(beaker) Run Tests",
+          "tooltip": "\uc804\uccb4 \ub2e8\uc704 \ud14c\uc2a4\ud2b8 \uc2e4\ud589 (./gradlew test)",
+          "color": "#FF9800"
+        }
+      }
+    },
+    {
+      "label": "\ud83d\udee1\ufe0f CycloneDX SBOM \ucd94\ucd9c",
+      "type": "shell",
+      "command": "./gradlew cyclonedxBom",
+      "problemMatcher": [],
+      "options": {
+        "statusbar": {
+          "label": "$(shield) Generate SBOM",
+          "tooltip": "CycloneDX SBOM \ucd94\ucd9c (./gradlew cyclonedxBom)",
+          "color": "#2196F3"
+        }
+      }
+    }
+  ]
+}
